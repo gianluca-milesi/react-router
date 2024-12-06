@@ -1,8 +1,13 @@
 import style from "./About.module.css"
+import sectionsStyle from "../Sections.module.css"
 
 function About() {
     return (
-        <section>About</section>
+        <main>
+            <section className={sectionsStyle.title_section}>
+                <h1>About Page</h1>
+            </section>
+        </main>
     )
 }
 

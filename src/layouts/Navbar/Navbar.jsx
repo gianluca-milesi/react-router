@@ -6,9 +6,9 @@ function Navbar() {
         <>
             <nav className={style.navbar}>
                 <ul className={style.main_menu}>
-                    <li><NavLink to="/">About</NavLink></li>
+                    <li><NavLink to="/about">About</NavLink></li>
                     <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/">Posts</NavLink></li>
+                    <li><NavLink to="/posts-list">Posts</NavLink></li>
                 </ul>
             </nav >
         </>
