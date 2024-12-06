@@ -1,0 +1,15 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+}
+
+.main_menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.active {
+    color: white;
+}
