@@ -6,7 +6,7 @@ function Card({ item = {} }) {
 
     return (
         <div className={style.card}>
-            <img src={image } />
+            <img src={image} className={style.card_figure} />
             <div className={style.card_body}>
                 <h3>{title}</h3>
                 <p>{content}</p>

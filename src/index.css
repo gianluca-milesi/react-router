@@ -6,7 +6,8 @@
 }
 
 body {
-  background-color: rgb(229, 229, 229);
+  background-color: #212121;
+  color: white;
 }
 
 a {
@@ -45,4 +46,17 @@ img {
 
 .col-4 {
   width: 33%;
+}
+
+
+/* STATI */
+.active {
+  color: rgb(121, 121, 121);
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.active:hover{
+  background-color: #212121;
 }
