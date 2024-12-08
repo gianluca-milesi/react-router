@@ -11,6 +11,7 @@ function PostsList() {
 
     const [posts, setPosts] = useState([])
 
+    //FETCH
     function fetchPosts() {
         axios.get(`${API_BASE_URI}posts`)
             .then((res) => {
@@ -25,6 +26,17 @@ function PostsList() {
         fetchPosts()
     }, [])
 
+    //DELETE
+    function deletePost(id) {
+        axios.delete(`${API_BASE_URI}posts/${id}`)
+            .then((res) => {
+                fetchPosts()
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+    }
+
 
     return (
         <>
@@ -37,7 +49,7 @@ function PostsList() {
                         <div className="row">
                             {posts.map((post) => (
                                 <div key={post.id} className="col-4">
-                                    <Card item={post} />
+                                    <Card item={post} deleteItem={deletePost}/>
                                 </div>
                             ))}
                         </div>

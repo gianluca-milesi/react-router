@@ -1,8 +1,8 @@
 import style from "./Card.module.css"
 
-function Card({ item = {} }) {
+function Card({ item = {}, deleteItem = () => { } }) {
 
-    const { title, image, content } = item
+    const { id, title, image, content } = item
 
     return (
         <div className={style.card}>
@@ -11,6 +11,7 @@ function Card({ item = {} }) {
                 <h3>{title}</h3>
                 <p>{content}</p>
             </div>
+            <button className={style.delete_button} onClick={() => deleteItem(id)}>Elimina</button>
         </div>
     )
 }
