@@ -1,0 +1,28 @@
+.search_form {
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.search_form:hover {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.search_bar {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 20px 0 0 20px;
+}
+
+.button {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    background-color: #181818;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.button:hover {
+    background-color: gray;
+}

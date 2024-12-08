@@ -3,22 +3,25 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import sectionsStyle from "../Sections.module.css"
 // import posts from "../../data/posts.js"
+import SearchBar from "../../components/SearchBar/SearchBar.jsx"
 import Card from "../../components/Card/Card.jsx"
 
 export const API_BASE_URI = "http://localhost:3000/"
+
 
 function PostsList() {
 
     const [posts, setPosts] = useState([])
 
     const [search, setSearch] = useState("")
-    const [filteredPosts, setFilteredPosts] = useState([])
+    const [filteredPosts, setFilteredPosts] = useState([posts])
 
     //FETCH
     function fetchPosts() {
         axios.get(`${API_BASE_URI}posts`)
             .then((res) => {
                 setPosts(res.data)
+                setFilteredPosts(res.data)
             })
             .catch((err) => {
                 console.error(err)
@@ -29,22 +32,29 @@ function PostsList() {
         fetchPosts()
     }, [])
 
+
     //HANDLERS
     //Search
     function handleSearch(event) {
         const value = event.target.value
         setSearch(value)
         // console.log(value)
+        if (value === "") {
+            setFilteredPosts(posts)
+        }
     }
 
-    //FILTER
-    useEffect(() => {
-        setFilteredPosts(posts.filter((post) => {
-            return post.title.toLowerCase().includes(search.toLowerCase())
-        }))
-    }, [posts, search])
 
-    //DELETE
+    //FUNCTIONS
+    //Filter
+    function filterPosts() {
+        const filtered = posts.filter((post) =>
+            post.title.toLowerCase().includes(search.toLowerCase())
+        );
+        setFilteredPosts(filtered);
+    }
+
+    //Delete
     function deletePost(id) {
         axios.delete(`${API_BASE_URI}posts/${id}`)
             .then((res) => {
@@ -63,14 +73,13 @@ function PostsList() {
                     <h1>Posts Page</h1>
                 </section>
                 <section className={sectionsStyle.search_section}>
-                    <input type="text" placeholder="Cerca" className={style.search_bar} value={search} onChange={handleSearch} />
-                    <button className={style.button}>Cerca</button>
+                    <SearchBar search={search} handleSearch={handleSearch} filterPosts={filterPosts} />
                 </section>
                 <section className={sectionsStyle.cards_section}>
                     <div className="container">
                         <div className="row">
-                            {filteredPosts.map((post) => (
-                                <div key={post.id} className="col-4">
+                            {filteredPosts.map((post, i) => (
+                                <div key={i} className="col-4">
                                     <Card item={post} deleteItem={deletePost} />
                                 </div>
                             ))}
