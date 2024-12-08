@@ -2,7 +2,7 @@ import style from "./PostsList.module.css"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import sectionsStyle from "../Sections.module.css"
-import posts from "../../data/posts.js"
+// import posts from "../../data/posts.js"
 import Card from "../../components/Card/Card.jsx"
 
 export const API_BASE_URI = "http://localhost:3000/"
