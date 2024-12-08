@@ -11,6 +11,9 @@ function PostsList() {
 
     const [posts, setPosts] = useState([])
 
+    const [search, setSearch] = useState("")
+    const [filteredPosts, setFilteredPosts] = useState([])
+
     //FETCH
     function fetchPosts() {
         axios.get(`${API_BASE_URI}posts`)
@@ -25,6 +28,21 @@ function PostsList() {
     useEffect(() => {
         fetchPosts()
     }, [])
+
+    //HANDLERS
+    //Search
+    function handleSearch(event) {
+        const value = event.target.value
+        setSearch(value)
+        // console.log(value)
+    }
+
+    //FILTER
+    useEffect(() => {
+        setFilteredPosts(posts.filter((post) => {
+            return post.title.toLowerCase().includes(search.toLowerCase())
+        }))
+    }, [posts, search])
 
     //DELETE
     function deletePost(id) {
@@ -44,12 +62,16 @@ function PostsList() {
                 <section className={sectionsStyle.title_section}>
                     <h1>Posts Page</h1>
                 </section>
+                <section className={sectionsStyle.search_section}>
+                    <input type="text" placeholder="Cerca" className={style.search_bar} value={search} onChange={handleSearch} />
+                    <button className={style.button}>Cerca</button>
+                </section>
                 <section className={sectionsStyle.cards_section}>
                     <div className="container">
                         <div className="row">
-                            {posts.map((post) => (
+                            {filteredPosts.map((post) => (
                                 <div key={post.id} className="col-4">
-                                    <Card item={post} deleteItem={deletePost}/>
+                                    <Card item={post} deleteItem={deletePost} />
                                 </div>
                             ))}
                         </div>
