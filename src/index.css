@@ -51,12 +51,8 @@ img {
 
 /* STATI */
 .active {
-  color: rgb(121, 121, 121);
+  color: white;
   padding: 0.25rem 0.5rem;
   border-radius: 10px;
-  transition: 0.2s;
-}
-
-.active:hover{
-  background-color: #212121;
+  transition: 0.3s;
 }
